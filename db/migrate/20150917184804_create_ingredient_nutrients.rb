@@ -1,6 +1,6 @@
-class CreateNutrientLists < ActiveRecord::Migration
+class CreateIngredientNutrients < ActiveRecord::Migration
   def change
-    create_table :nutrient_lists do |t|
+    create_table :ingredient_nutrients do |t|
       t.float :quantity
       t.float :per_measure
       t.references :nutrient, index: true, foreign_key: true
