@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150918114210) do
+ActiveRecord::Schema.define(version: 20150918150848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,8 +21,10 @@ ActiveRecord::Schema.define(version: 20150918114210) do
     t.float    "per_measure"
     t.integer  "dish_id"
     t.integer  "ingredient_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "unit"
+    t.string   "per_measure_unit"
   end
 
   add_index "dish_ingredients", ["dish_id"], name: "index_dish_ingredients_on_dish_id", using: :btree
@@ -49,6 +51,7 @@ ActiveRecord::Schema.define(version: 20150918114210) do
     t.integer  "drv_profile_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.string   "unit"
   end
 
   add_index "drvs", ["drv_profile_id"], name: "index_drvs_on_drv_profile_id", using: :btree
@@ -59,8 +62,10 @@ ActiveRecord::Schema.define(version: 20150918114210) do
     t.float    "per_measure"
     t.integer  "nutrient_id"
     t.integer  "ingredient_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "unit"
+    t.string   "per_measure_unit"
   end
 
   add_index "ingredient_nutrients", ["ingredient_id"], name: "index_ingredient_nutrients_on_ingredient_id", using: :btree

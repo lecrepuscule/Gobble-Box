@@ -5,8 +5,6 @@ class NutrientsController < ApplicationController
   end
 
   def create
-    Nutrient.setupNutrients(params[:nutrients].values)
-    redirect_to nutrients_path
   end
 
 end
