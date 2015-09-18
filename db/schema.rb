@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150918102514) do
+ActiveRecord::Schema.define(version: 20150918110609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20150918102514) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "ndbno"
   end
 
   create_table "intakes", force: :cascade do |t|
@@ -101,9 +102,9 @@ ActiveRecord::Schema.define(version: 20150918102514) do
   create_table "nutrients", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "ndb_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "ndb_nutrient_id"
   end
 
   create_table "users", force: :cascade do |t|
