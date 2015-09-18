@@ -10,16 +10,17 @@ $(document).ready(function(){
   button.on("click", getNutrients);
 
   function getNutrients(){
-    console.log("i've been clicked")
+
     var url = "http://api.nal.usda.gov/ndb/list?format=json&lt=n&offset=0&sort=n&api_key=rW2xruSnlvei2Gb9N8C0wDunX49aTnZsrKkSFRbl";
 
     request(url, "get").done(function(response){
-      console.log("response is back!")
-      debugger;
-      console.log("request done");
-
+      var data = {nutrients: response.list.item};
+      var url = "/nutrients";
+      var method = "post";
+      request(url, method, data).done(function(){
+        console.log("db updated");
+      })
     })
-
   }
 
   function request(url, method, data){
