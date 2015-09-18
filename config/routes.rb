@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
-  root "intakes#index"
+  root "nutrients#index"
   
   resources :users do
     resources :intakes
   end
+
+  resources :nutrients
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
