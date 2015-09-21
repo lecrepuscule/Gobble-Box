@@ -11,5 +11,8 @@
     <% end %>
   </ul>
 
-
-<%= link_to "I've had something else", new_user_intake_path %>
+<%= form_tag("/dishes/new", method: "get") do %>
+  <%= label_tag(:q, "I have also had:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search", class: "search-dish") %>
+<% end %>
