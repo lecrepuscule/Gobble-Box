@@ -8,7 +8,10 @@ class IntakesController < ApplicationController
   def new
     @user = User.find(params[:user_id])
     @intake = Intake.new
-    
+    binding.pry
+    @dish_data = params["dishData"]
+    @dish = Dish.new(params)
+
   end
 
   def create

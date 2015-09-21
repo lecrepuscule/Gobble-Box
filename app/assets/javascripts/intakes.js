@@ -9,19 +9,19 @@ $(document).ready(function(){
 
   button.on("click", getNewDish);
 
-  // $("body").on("click", $(".dish-result"), createNewDish);
+  // $(".results").on("click", $(".dish-result"), createNewDish);
 
   function getNewDish(e){
     console.log("i'm clicked");
 
     e.preventDefault();
 
-    var url = "/dishes/new";
+    var url = "/dishes";
     var data = {
       name: $("#q").val()
     };
 
-    request(url, "get", data).done(function(response){
+    request(url, "post", data).done(function(response){
       console.log("I've got a response");
       $(".results").empty();
       $.each(response[0].hits, function(index, dish){
@@ -40,17 +40,20 @@ $(document).ready(function(){
   }
 
   function appendDish(dish, user_id){
-    newDishTemplate = "<li class='dish-result'><a href='/users/"+ user_id +"/intakes/new'>"+dish.recipe.label+"</a></li>"
+    newDishTemplate = "<li class='dish-result'><a href='#'>"+dish.recipe.label+"</a></li>"
     newDish = $(newDishTemplate);
     newDish.data("dish", dish);
+    newDish.data("user_id", user_id);
     newDish.appendTo(".results");
   }
 
   // function createNewDish(e){
   //   e.preventDefault;
-  //   var url = "/intakes/new"
-  //   var method = "get"
-  //   var data = this.data("dish")
+  //   var method = "get";
+  //   var $this = $(e.target.parentElement);
+  //   var data = $this.data("dish");
+  //   debugger;
+  //   var url = "/users/" + $this.data("user_id") + "/intakes/new";
   //   request(url, method, data).done(function(response){
   //     console.log("new dish is created");
   //   })

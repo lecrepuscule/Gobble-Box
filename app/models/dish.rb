@@ -13,11 +13,11 @@ class Dish < ActiveRecord::Base
 
       per_measure = dish_data["recipe"]["totalWeight"]
       per_measure_unit = "g"
-      nutrients = ["recipe"]["totalNutrients"].values
-      nutrients_daily = ["recipe"]["totalDaily"].values
+
+      nutrients = dish_data["recipe"]["totalNutrients"].values
+      nutrients_daily = dish_data["recipe"]["totalDaily"].values
 
       self.update_attributes(name: name, image: image)
-
       nutrients_daily.each do |nutrient_data| 
         nutrient = Nutrient.new
         nutrient = Nutrient.find_by(name: nutrient_data["label"]) unless nutrient.record nutrient_data

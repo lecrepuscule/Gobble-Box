@@ -1,12 +1,12 @@
 <%= form_for [@user, @intake] do |f| %>
 
   <%= f.label :dish_id %>
-  <%= f.text_field :dish_id %>
+  <%= f.text_field :dish_id, @dish_data["recipe"]["label"] %>
 
   <%= f.label :serving %>
   <%= f.number_field :serving %>
 
-  <%= f.submit %>
+  <%= f.submit value: "Confirm" %>
 
 <% end %>
 
