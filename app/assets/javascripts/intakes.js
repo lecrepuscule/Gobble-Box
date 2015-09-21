@@ -9,14 +9,14 @@ $(document).ready(function(){
 
   button.on("click", getNewDish);
 
-  body.on("click", $(".dish-result"), createNewDish);
+  // $("body").on("click", $(".dish-result"), createNewDish);
 
   function getNewDish(e){
     console.log("i'm clicked");
 
     e.preventDefault();
 
-    var url = "/dishes/index";
+    var url = "/dishes/new";
     var data = {
       name: $("#q").val()
     };
@@ -24,8 +24,8 @@ $(document).ready(function(){
     request(url, "get", data).done(function(response){
       console.log("I've got a response");
       $(".results").empty();
-      $.each(response.hits, function(index, dish){
-        appendDish(dish);
+      $.each(response[0].hits, function(index, dish){
+        appendDish(dish, response[1]);
       })
     })
   }
@@ -39,20 +39,21 @@ $(document).ready(function(){
     })
   }
 
-  function appendDish(dish){
-    newDish = $("<li class='dish-result'><a href='/intakes/new'>"+dish.recipe.label+"</a></li>");
+  function appendDish(dish, user_id){
+    newDishTemplate = "<li class='dish-result'><a href='/users/"+ user_id +"/intakes/new'>"+dish.recipe.label+"</a></li>"
+    newDish = $(newDishTemplate);
     newDish.data("dish", dish);
     newDish.appendTo(".results");
   }
 
-  function createNewDish(e){
-    e.preventDefault;
-    var url = "/dishes/new"
-    var method = "get"
-    var data = this.data("dish")
-    request(url, method, data).done(function(response){
-      console.log("new dish is created");
-    })
-  }
+  // function createNewDish(e){
+  //   e.preventDefault;
+  //   var url = "/intakes/new"
+  //   var method = "get"
+  //   var data = this.data("dish")
+  //   request(url, method, data).done(function(response){
+  //     console.log("new dish is created");
+  //   })
+  // }
 
 })

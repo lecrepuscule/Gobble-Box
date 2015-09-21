@@ -8,6 +8,7 @@ class IntakesController < ApplicationController
   def new
     @user = User.find(params[:user_id])
     @intake = Intake.new
+    
   end
 
   def create
