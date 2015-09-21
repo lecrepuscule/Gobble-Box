@@ -1,6 +1,6 @@
 <%= form_for [@user, @intake] do |f| %>
 
-  <%= f.collection_select(:dish_id, Dish.all, :id, :name, {selected: @dish.id}) %>
+  <%= f.collection_select(:dish_id, Dish.all, :id, :name) %>
 
   <%= f.label :serving %>
   <%= f.number_field :serving %>

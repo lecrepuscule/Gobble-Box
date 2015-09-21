@@ -2,13 +2,14 @@
 
 <h2>This week, you have had: </h2>
 
-  <p>Nutrients intake: </p>
-
   <ul>
     <% @intakes.each do |intake| %>
-    <li><%= link_to intake.dish.name, intake %></li>
+    <li><%= link_to intake.dish.name, intake.dish %></li>
     <% end %>
   </ul>
+
+<h2>Nutrients intake: </h2>
+
 
 <%= form_tag do %>
   <%= label_tag(:q, "I have also had:") %>

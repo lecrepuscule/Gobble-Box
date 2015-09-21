@@ -40,7 +40,7 @@ $(document).ready(function(){
   }
 
   function appendDish(dish, user_id){
-    newDishTemplate = "<li class='dish-result'><a href='#'>"+dish.recipe.label+"</a></li>"
+    newDishTemplate = "<li class='dish-result'><a href='/users/" + user_id + "/intakes/new'>"+dish.recipe.label+"</a></li>"
     newDish = $(newDishTemplate);
     newDish.data("dish", dish.recipe.label);
     newDish.data("user_id", user_id);

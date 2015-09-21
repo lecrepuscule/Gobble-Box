@@ -8,10 +8,19 @@ class IntakesController < ApplicationController
   def new
     @user = User.find(params[:user_id])
     @intake = Intake.new
-    @dish = Dish.find_by(name: params["dishName"])
   end
 
   def create
+    @user = User.find(params[:user_id])
+    @intake = @user.intakes.new(intake_params)
+    if @intake.save
+      redirect_to user_intakes_path(@user)
+    end
+  end
+
+  private
+  def intake_params
+    params.require(:intake).permit(:dish_id, :user_id, :serving, :date)
   end
 
 end
