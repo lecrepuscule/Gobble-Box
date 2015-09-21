@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150921121302) do
+ActiveRecord::Schema.define(version: 20150921173032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20150921121302) do
     t.string   "per_measure_unit"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.float    "daily_percentage"
   end
 
   add_index "dish_nutrients", ["dish_id"], name: "index_dish_nutrients_on_dish_id", using: :btree

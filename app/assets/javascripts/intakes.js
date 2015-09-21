@@ -9,12 +9,14 @@ $(document).ready(function(){
 
   button.on("click", getNewDish);
 
+  body.on("click", $(".dish-result"), createNewDish);
+
   function getNewDish(e){
     console.log("i'm clicked");
 
     e.preventDefault();
 
-    var url = "/dishes/new";
+    var url = "/dishes/index";
     var data = {
       name: $("#q").val()
     };
@@ -38,7 +40,19 @@ $(document).ready(function(){
   }
 
   function appendDish(dish){
-    $("<li>"+dish.recipe.label+"</li>").appendTo(".results")
+    newDish = $("<li class='dish-result'><a href='/intakes/new'>"+dish.recipe.label+"</a></li>");
+    newDish.data("dish", dish);
+    newDish.appendTo(".results");
+  }
+
+  function createNewDish(e){
+    e.preventDefault;
+    var url = "/dishes/new"
+    var method = "get"
+    var data = this.data("dish")
+    request(url, method, data).done(function(response){
+      console.log("new dish is created");
+    })
   }
 
 })
