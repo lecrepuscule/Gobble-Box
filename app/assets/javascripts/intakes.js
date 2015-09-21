@@ -21,9 +21,8 @@ $(document).ready(function(){
 
     request(url, "get", data).done(function(response){
       console.log("I've got a response");
-      debugger;
+      $(".results").empty();
       $.each(response.hits, function(index, dish){
-        debugger;
         appendDish(dish);
       })
     })
@@ -40,7 +39,6 @@ $(document).ready(function(){
 
   function appendDish(dish){
     $("<li>"+dish.recipe.label+"</li>").appendTo(".results")
-    debugger;
   }
 
 })
