@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150918150848) do
+ActiveRecord::Schema.define(version: 20150921121302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,20 @@ ActiveRecord::Schema.define(version: 20150918150848) do
 
   add_index "dish_ingredients", ["dish_id"], name: "index_dish_ingredients_on_dish_id", using: :btree
   add_index "dish_ingredients", ["ingredient_id"], name: "index_dish_ingredients_on_ingredient_id", using: :btree
+
+  create_table "dish_nutrients", force: :cascade do |t|
+    t.integer  "nutrient_id"
+    t.integer  "dish_id"
+    t.float    "quantity"
+    t.string   "unit"
+    t.float    "per_measure"
+    t.string   "per_measure_unit"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "dish_nutrients", ["dish_id"], name: "index_dish_nutrients_on_dish_id", using: :btree
+  add_index "dish_nutrients", ["nutrient_id"], name: "index_dish_nutrients_on_nutrient_id", using: :btree
 
   create_table "dishes", force: :cascade do |t|
     t.string   "name"
@@ -127,6 +141,8 @@ ActiveRecord::Schema.define(version: 20150918150848) do
 
   add_foreign_key "dish_ingredients", "dishes"
   add_foreign_key "dish_ingredients", "ingredients"
+  add_foreign_key "dish_nutrients", "dishes"
+  add_foreign_key "dish_nutrients", "nutrients"
   add_foreign_key "drvs", "drv_profiles"
   add_foreign_key "drvs", "nutrients"
   add_foreign_key "ingredient_nutrients", "ingredients"

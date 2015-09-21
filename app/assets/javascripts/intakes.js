@@ -7,7 +7,7 @@ $(document).ready(function(){
 
   var button = $(".search-dish");
 
-  $("body").on("click", button, getNewDish);
+  button.on("click", getNewDish);
 
   function getNewDish(e){
     console.log("i'm clicked");
@@ -18,9 +18,14 @@ $(document).ready(function(){
     var data = {
       name: $("#q").val()
     };
+
     request(url, "get", data).done(function(response){
       console.log("I've got a response");
       debugger;
+      $.each(response.hits, function(index, dish){
+        debugger;
+        appendDish(dish);
+      })
     })
   }
 
@@ -31,6 +36,11 @@ $(document).ready(function(){
       dataType: "json",
       data: data
     })
+  }
+
+  function appendDish(dish){
+    $("<li>"+dish.recipe.label+"</li>").appendTo(".results")
+    debugger;
   }
 
 })
