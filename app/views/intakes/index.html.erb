@@ -1,0 +1,15 @@
+<h1>Welcome, <%= @user.name %>!</h1>
+
+<h2>This week, you have had: </h2>
+
+  <p>Nutrients intake: </p>
+
+
+  <ul>
+    <% @intakes.each do |intake| %>
+    <li><%= link_to intake.dish.name, intake %></li>
+    <% end %>
+  </ul>
+
+
+<%= link_to "I've had something else", new_user_intake_path %>
