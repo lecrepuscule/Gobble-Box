@@ -7,13 +7,12 @@ class Dish < ActiveRecord::Base
 
 
   def record dish_data
-    unless Dish.exists? dish_data["recipe"]["label"]
+    unless Dish.exists?(name: dish_data["recipe"]["label"])
       name = dish_data["recipe"]["label"]
       image = dish_data["recipe"]["image"]
 
       per_measure = dish_data["recipe"]["totalWeight"]
       per_measure_unit = "g"
-
       nutrients = dish_data["recipe"]["totalNutrients"].values
       nutrients_daily = dish_data["recipe"]["totalDaily"].values
 

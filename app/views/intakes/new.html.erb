@@ -1,10 +1,12 @@
 <%= form_for [@user, @intake] do |f| %>
 
-  <%= f.label :dish_id %>
-  <%= f.text_field :dish_id, @dish_data["recipe"]["label"] %>
+  <%= f.collection_select(:dish_id, Dish.all, :id, :name, {selected: @dish.id}) %>
 
   <%= f.label :serving %>
   <%= f.number_field :serving %>
+
+  <% f.label :date %>
+  <%= f.date_select :date %>
 
   <%= f.submit value: "Confirm" %>
 

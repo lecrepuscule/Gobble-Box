@@ -6,7 +6,7 @@ class Nutrient < ActiveRecord::Base
   has_many :drv_profiles, through: :drvs
 
   def record nutrient_data
-    (Nutrient.exists? nutrient_data["label"]) ? false : update_attributes(name: nutrient_data["label"]) 
+    Nutrient.exists?(name: nutrient_data["label"]) ? false : update_attributes(name: nutrient_data["label"]) 
   end
 
 end

@@ -42,21 +42,21 @@ $(document).ready(function(){
   function appendDish(dish, user_id){
     newDishTemplate = "<li class='dish-result'><a href='#'>"+dish.recipe.label+"</a></li>"
     newDish = $(newDishTemplate);
-    newDish.data("dish", dish);
+    newDish.data("dish", dish.recipe.label);
     newDish.data("user_id", user_id);
     newDish.appendTo(".results");
   }
 
   // function createNewDish(e){
   //   e.preventDefault;
+  //   console.log("link is clicked");
   //   var method = "get";
   //   var $this = $(e.target.parentElement);
-  //   var data = $this.data("dish");
-  //   debugger;
+  //   var data = {
+  //     dishName: $this.data("dish")
+  //   };
   //   var url = "/users/" + $this.data("user_id") + "/intakes/new";
-  //   request(url, method, data).done(function(response){
-  //     console.log("new dish is created");
-  //   })
+  //   request(url, method, data)
   // }
 
 })
