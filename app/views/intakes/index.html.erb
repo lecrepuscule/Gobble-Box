@@ -5,25 +5,43 @@
 <h2>This week, you have had: </h2>
 
   <ul>
-    <% @intakes.each do |intake| %>
-    <li><%= link_to "#{intake.serving}g of #{intake.dish.name} on #{intake.date}", intake.dish %></li>
+    <% @intakes.each do |meal| %>
+    <li><%= link_to "#{meal.serving}g of #{meal.dish.name} on #{meal.date}", meal.dish %></li>
     <% end %>
   </ul>
 
-  <%= form_tag do %>
-    <%= label_tag(:q, "I have also had:") %>
-    <%= text_field_tag(:q) %>
-    <%= submit_tag("Search", class: "search-dish") %>
-  <% end %>
+  <div class="intake-ops">
+    <div id="intake-primary" class="show">
+      <%= form_tag remote: true do %>
+        <%= label_tag(:q, "I have also had:") %>
+        <%= text_field_tag(:q) %>
+        <%= submit_tag("Search", class: "search-dish") %>
+      <% end %>
+    </div>
+    <div id="intake-secondary" class="hide">
+      <%= form_for [@user, @intake] do |f| %>
+
+        <%= f.collection_select(:dish_id, Dish.all, :id, :name) %>
+
+        <%= f.label :serving %>
+        <%= f.number_field :serving %>
+
+        <% f.label :date %>
+        <%= f.date_select :date %>
+
+        <%= f.submit value: "Confirm" %>
+      <% end %>
+    </div>
+  </div>
 
   <div class="results"></div>
 
-<h2>Nutrient intakes: </h2>
-  <ul>
-    <% @nutrient_intakes.each do |nutrient, intake| %>
-    <li><%= "#{nutrient}: #{intake.round(2)}%" %></li>
-    <% end %>
-  </ul>
+  <div class="nutrient-intakes">
+    <h2>Nutrient intakes: </h2>
+    <ul>
+      <% @nutrient_intakes.each do |nutrient, intake| %>
+      <li><%= "#{nutrient}: #{intake.round(2)}%" %></li>
+      <% end %>
+    </ul>
+  </div>
 
-
-<div id="chart"></div>
