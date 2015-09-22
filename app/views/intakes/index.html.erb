@@ -17,11 +17,12 @@
         <%= text_field_tag(:q) %>
         <%= submit_tag("Search", class: "search-dish") %>
       <% end %>
+      <div class="results"></div>
     </div>
     <div id="intake-secondary" class="hide">
       <%= form_for [@user, @intake] do |f| %>
 
-        <%= f.collection_select(:dish_id, Dish.all, :id, :name) %>
+        <%= f.collection_select(:dish_id, Dish.all, :id, :name, {id: "dish-select"}) %>
 
         <%= f.label :serving %>
         <%= f.number_field :serving %>
@@ -29,12 +30,10 @@
         <% f.label :date %>
         <%= f.date_select :date %>
 
-        <%= f.submit value: "Confirm" %>
+        <%= f.submit value: "Confirm", id: "intake-submit" %>
       <% end %>
     </div>
   </div>
-
-  <div class="results"></div>
 
   <div class="nutrient-intakes">
     <h2>Nutrient intakes: </h2>
