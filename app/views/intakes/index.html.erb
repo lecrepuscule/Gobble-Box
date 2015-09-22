@@ -1,8 +1,15 @@
-<h1>Welcome, <%= @user.name %>!</h1>
+<div class="row">
+  <div class="small-3 large-6 columns">
+    <h1>Welcome, <%= @user.name %>!</h1>
+  </div>
+  <div class="small-3 large-6 columns">
+    <h1><%= link_to "Balance your diet", dishes_path, id: "find-inspiration" %></h1>
+  </div>
+</div>
 
 <div class="row">
 
-  <div class="small-6 large-7 columns">
+  <div class="small-6 large-8 columns">
     <h2>This week, you have had: </h2>
 
     <table>
@@ -17,31 +24,32 @@
     </table>
   </div>
   
-  <div class="small-6 large-5 columns">
-    <%= link_to "Find Inspiration", dishes_path %>
+  <div class="row">
+    <div class="small-5 large-3 columns">
 
-    <div class="intake-ops">
-      <div id="intake-primary" class="show">
-        <%= form_tag("/dishes", method: "post", remote: true, id: "search-form") do %>
-          <%= label_tag(:q, "I have also had:") %>
-          <%= text_field_tag(:q) %>
-          <%= submit_tag("Search", id: "search-dish") %>
-        <% end %>
-        <div class="results"></div>
-      </div>
-      <div id="intake-secondary" class="hide">
-        <%= form_for [@user, @intake], remote: true do |f| %>
+      <div class="intake-ops">
+        <div id="intake-primary" class="show">
+          <%= form_tag("/dishes", method: "post", remote: true, id: "search-form") do %>
+            <%= label_tag(:q, "I have also had:", class: "label round") %>
+            <%= text_field_tag(:q) %>
+            <%= submit_tag("Search", id: "search-dish", class: "button round small") %>
+          <% end %>
+          <div class="results"></div>
+        </div>
+        <div id="intake-secondary" class="hide">
+          <%= form_for [@user, @intake], remote: true do |f| %>
 
-          <%= f.collection_select(:dish_id, Dish.all, :id, :name) %>
+            <%= f.collection_select(:dish_id, Dish.all, :id, :name) %>
 
-          <%= f.label :serving %>
-          <%= f.number_field :serving %>
+            <%= f.label :serving %>
+            <%= f.number_field :serving %>
 
-          <% f.label :date %>
-          <%= f.date_select :date %>
+            <% f.label :date %>
+            <%= f.date_select :date %>
 
-          <%= f.submit value: "Confirm", id: "intake-submit" %>
-        <% end %>
+            <%= f.submit value: "Confirm", id: "intake-submit", class: "button round small" %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
