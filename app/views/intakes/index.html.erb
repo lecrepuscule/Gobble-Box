@@ -5,17 +5,21 @@
   <div class="small-6 large-7 columns">
     <h2>This week, you have had: </h2>
 
-    <ul>
+    <table>
       <% @intakes.each do |meal| %>
-        <li><%= link_to "#{meal.serving}g of #{meal.dish.name} on #{meal.date}", meal.dish %>
-        <%= link_to "Delete", "/users/#{current_user.id}/intakes/#{meal.id}", method: :delete %></li>
+        <tr>
+          <td><%= meal.serving %>g</td>
+          <td><%= link_to meal.dish.name, meal.dish %></td>
+          <td><%= meal.date %></td>
+          <td><%= link_to "Delete", "/users/#{current_user.id}/intakes/#{meal.id}", method: :delete %></td>
+        </tr>
       <% end %>
-    </ul>
+    </table>
   </div>
   
   <div class="small-6 large-5 columns">
     <%= link_to "Find Inspiration", dishes_path %>
-    
+
     <div class="intake-ops">
       <div id="intake-primary" class="show">
         <%= form_tag remote: true do %>
