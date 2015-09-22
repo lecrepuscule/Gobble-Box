@@ -16,8 +16,9 @@ class IntakesController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @intake = @user.intakes.new(intake_params)
-    if @intake.save
-      redirect_to user_intakes_path(@user)
+    @intake.save
+    if request.xhr?
+      render js: "window.location = '#{user_intakes_path}'"
     end
   end
 

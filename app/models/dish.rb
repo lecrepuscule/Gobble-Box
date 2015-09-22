@@ -12,6 +12,7 @@ class Dish < ActiveRecord::Base
 
   def record dish_data
     unless Dish.exists?(name: dish_data["recipe"]["label"])
+
       name = dish_data["recipe"]["label"]
       image = dish_data["recipe"]["image"]
 
@@ -21,6 +22,7 @@ class Dish < ActiveRecord::Base
       nutrients_daily = dish_data["recipe"]["totalDaily"].values
 
       self.update_attributes(name: name, image: image)
+
       nutrients_daily.each do |nutrient_data| 
         nutrient = Nutrient.new
         nutrient = Nutrient.find_by(name: nutrient_data["label"]) unless nutrient.record nutrient_data
@@ -32,6 +34,7 @@ class Dish < ActiveRecord::Base
         end
       end
     end
+    Dish.find_by(name: dish_data["recipe"]["label"])
   end
 
 

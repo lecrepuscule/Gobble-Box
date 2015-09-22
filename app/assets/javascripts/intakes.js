@@ -12,6 +12,7 @@ $(document).ready(function(){
 
   $(".results").on("click", $(".dish-result"), newIntake);
 
+  // submitIntakeButton.on("click", createIntake);
 
 
   function getNewDish(e){
@@ -27,7 +28,7 @@ $(document).ready(function(){
     request(url, "post", data).done(function(response){
       console.log("I've got a response");
       $(".results").empty();
-      $.each(response[0].hits, function(index, dish){
+      $.each(response[0], function(index, dish){
         appendDish(dish, response[1]);
       })
     })
@@ -43,10 +44,10 @@ $(document).ready(function(){
   }
 
   function appendDish(dish, user_id){
-    // newDishTemplate = "<li class='dish-result'><a href='/users/" + user_id + "/intakes/new'>"+dish.recipe.label+"</a></li>"
-    newDishTemplate = "<li class='dish-result'><a href='#'>"+dish.recipe.label+"</a></li>"
+
+    newDishTemplate = "<li class='dish-result'><a href='#'>"+dish.name+"</a></li>"
     newDish = $(newDishTemplate);
-    newDish.data("dish", dish.recipe.label);
+    newDish.data("dish_id", dish.id);
     newDish.data("user_id", user_id);
     newDish.appendTo(".results");
   }
@@ -60,20 +61,6 @@ $(document).ready(function(){
     $("#intake-primary").removeClass("show").addClass("hide");
     $("#intake-secondary").removeClass("hide").addClass("show");
 
-    $("#dish-select").val($this.data("dish"));
-
-    // var method = "get";
-    // var data = {
-    //   dishName: $this.data("dish")
-    // };
-    // var url = "/users/" + $this.data("user_id") + "/intakes/new";
-    // request(url, method, data)
+    $("#intake_dish_id").val($this.data("dish_id"));
   }
-
-  // function renderForm(){
-  //   form = $("<form class='new-intake-form'>");
-
-
-  // }
-
 })

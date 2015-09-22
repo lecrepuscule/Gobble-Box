@@ -6,7 +6,7 @@
 
   <ul>
     <% @intakes.each do |meal| %>
-    <li><%= link_to "#{meal.serving}g of #{meal.dish.name} on #{meal.date}", meal.dish %></li>
+    <li><%= link_to "#{meal.serving}g of #{meal.dish.name} on #{meal.date}", meal.dish %><%= link_to "Destroy", "/users/#{current_user.id}/intakes/#{meal.id}", method: :delete %></li>
     <% end %>
   </ul>
 
@@ -20,9 +20,9 @@
       <div class="results"></div>
     </div>
     <div id="intake-secondary" class="hide">
-      <%= form_for [@user, @intake] do |f| %>
+      <%= form_for [@user, @intake], remote: true do |f| %>
 
-        <%= f.collection_select(:dish_id, Dish.all, :id, :name, {id: "dish-select"}) %>
+        <%= f.collection_select(:dish_id, Dish.all, :id, :name) %>
 
         <%= f.label :serving %>
         <%= f.number_field :serving %>
