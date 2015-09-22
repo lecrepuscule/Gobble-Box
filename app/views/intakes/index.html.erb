@@ -1,12 +1,12 @@
 <h1>Welcome, <%= @user.name %>!</h1>
 
-<%= button_tag, value: Find Inspiration, id: "recommand-button" %>
+<%= link_to "Find Inspiration", dishes_path %>
 
 <h2>This week, you have had: </h2>
 
   <ul>
     <% @intakes.each do |intake| %>
-    <li><%= link_to intake.dish.name, intake.dish %></li>
+    <li><%= link_to "#{intake.serving}g of #{intake.dish.name} on #{intake.date}", intake.dish %></li>
     <% end %>
   </ul>
 
@@ -21,6 +21,6 @@
 <h2>Nutrient intakes: </h2>
   <ul>
     <% @nutrient_intakes.each do |nutrient, intake| %>
-    <li><%= "#{nutrient}: #{intake}" %></li>
+    <li><%= "#{nutrient}: #{intake.round(2)}%" %></li>
     <% end %>
   </ul>

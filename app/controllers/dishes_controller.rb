@@ -1,6 +1,7 @@
 class DishesController < ApplicationController
 
   def index
+    @dishes = current_user.get_recommendations
   end
 
 

@@ -14,11 +14,10 @@ class User < ActiveRecord::Base
     nutrient_intakes
   end
 
-  def find_dish
+  def get_recommendations
     intakes = current_intake
     search_string = intakes.min_by(2) {|k,v| v}.to_h.keys.join(" ").gsub(/\((.*?)\)/, "")
     recommendations = HTTParty.get("https://api.edamam.com/search?q=#{search_string}&app_id=#{ENV['edamam_app_id']}&app_key=#{ENV['edamam_key']}")
-    binding.pry
   end
 
 

@@ -1,0 +1,7 @@
+<h1>Why not try: </h1>
+
+<% @dishes["hits"].each do |dish| %>
+
+  <%= link_to dish["recipe"]["label"], dish["recipe"]["url"] %>
+  <%= image_tag dish["recipe"]["image"] %>
+<% end %>
