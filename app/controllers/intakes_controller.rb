@@ -4,7 +4,7 @@ class IntakesController < ApplicationController
     @user = User.find(params[:user_id])
     @intakes = @user.intakes
     @intake = Intake.new
-    nutrients = @user.current_intake
+    @nutrients = @user.current_intake
     @nutrient_intakes = nutrients.sort_by {|k,v| v}
   end
 

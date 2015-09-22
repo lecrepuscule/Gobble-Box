@@ -22,10 +22,10 @@
 
     <div class="intake-ops">
       <div id="intake-primary" class="show">
-        <%= form_tag remote: true do %>
+        <%= form_tag("/dishes", method: "post", remote: true, id: "search-form") do %>
           <%= label_tag(:q, "I have also had:") %>
           <%= text_field_tag(:q) %>
-          <%= submit_tag("Search", class: "search-dish") %>
+          <%= submit_tag("Search", id: "search-dish") %>
         <% end %>
         <div class="results"></div>
       </div>
@@ -51,11 +51,6 @@
   <div class="row">
     <div class="nutrient-intakes">
       <h2>Nutrient intakes: </h2>
-      <ul>
-        <% @nutrient_intakes.each do |nutrient, intake| %>
-        <li><%= "#{nutrient}: #{intake.round(2)}%" %></li>
-        <% end %>
-      </ul>
       <%= column_chart @nutrient_intakes %>
     </div>
   </div>

@@ -5,34 +5,15 @@
 
 $(document).ready(function(){
 
-  var button = $(".search-dish");
-  var submitIntakeButton = $("#intake-submit");
-
-  button.on("click", getNewDish);
-
   $(".results").on("click", $(".dish-result"), newIntake);
 
-  // submitIntakeButton.on("click", createIntake);
 
-
-  function getNewDish(e){
-    console.log("i'm clicked");
-
-    e.preventDefault();
-
-    var url = "/dishes";
-    var data = {
-      name: $("#q").val()
-    };
-
-    request(url, "post", data).done(function(response){
-      console.log("I've got a response");
+  $("#search-form").on("ajax:success", function(e, response){
       $(".results").empty();
       $.each(response[0], function(index, dish){
         appendDish(dish, response[1]);
       })
-    })
-  }
+  })
 
   function request(url, method, data){
     return $.ajax({
