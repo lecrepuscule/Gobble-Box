@@ -5,7 +5,7 @@ class IntakesController < ApplicationController
     @intakes = @user.intakes
     @intake = Intake.new
     @nutrients = @user.current_intake
-    @nutrient_intakes = nutrients.sort_by {|k,v| v}
+    @nutrient_intakes = @nutrients.sort_by {|k,v| v}
   end
 
   def new
