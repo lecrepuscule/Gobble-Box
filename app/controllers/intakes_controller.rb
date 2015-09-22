@@ -20,6 +20,16 @@ class IntakesController < ApplicationController
     end
   end
 
+  def show
+  end
+
+  def destroy
+    @user = User.find(params[:user_id])
+    @intake = Intake.find(params[:id])
+    @intake.destroy
+    redirect_to user_intakes_path(@user)
+  end
+
   private
   def intake_params
     params.require(:intake).permit(:dish_id, :user_id, :serving, :date)

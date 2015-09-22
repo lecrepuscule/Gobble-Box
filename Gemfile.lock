@@ -187,6 +187,9 @@ GEM
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
     formatador (0.2.5)
+    foundation-rails (5.5.2.1)
+      railties (>= 3.1.0)
+      sass (>= 3.3.0, < 3.5)
     git-version-bump (0.15.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
@@ -335,6 +338,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.1.0)
   fog
+  foundation-rails
   gon
   httparty
   jbuilder (~> 2.0)
