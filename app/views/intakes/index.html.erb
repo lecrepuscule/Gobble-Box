@@ -1,46 +1,57 @@
 <h1>Welcome, <%= @user.name %>!</h1>
 
-<%= link_to "Find Inspiration", dishes_path %>
+<div class="row">
 
-<h2>This week, you have had: </h2>
+  <div class="small-6 large-7 columns">
+    <h2>This week, you have had: </h2>
 
-  <ul>
-    <% @intakes.each do |meal| %>
-    <li><%= link_to "#{meal.serving}g of #{meal.dish.name} on #{meal.date}", meal.dish %><%= link_to "Destroy", "/users/#{current_user.id}/intakes/#{meal.id}", method: :delete %></li>
-    <% end %>
-  </ul>
-
-  <div class="intake-ops">
-    <div id="intake-primary" class="show">
-      <%= form_tag remote: true do %>
-        <%= label_tag(:q, "I have also had:") %>
-        <%= text_field_tag(:q) %>
-        <%= submit_tag("Search", class: "search-dish") %>
+    <ul>
+      <% @intakes.each do |meal| %>
+        <li><%= link_to "#{meal.serving}g of #{meal.dish.name} on #{meal.date}", meal.dish %>
+        <%= link_to "Delete", "/users/#{current_user.id}/intakes/#{meal.id}", method: :delete %></li>
       <% end %>
-      <div class="results"></div>
-    </div>
-    <div id="intake-secondary" class="hide">
-      <%= form_for [@user, @intake], remote: true do |f| %>
+    </ul>
+  </div>
+  
+  <div class="small-6 large-5 columns">
+    <%= link_to "Find Inspiration", dishes_path %>
+    
+    <div class="intake-ops">
+      <div id="intake-primary" class="show">
+        <%= form_tag remote: true do %>
+          <%= label_tag(:q, "I have also had:") %>
+          <%= text_field_tag(:q) %>
+          <%= submit_tag("Search", class: "search-dish") %>
+        <% end %>
+        <div class="results"></div>
+      </div>
+      <div id="intake-secondary" class="hide">
+        <%= form_for [@user, @intake], remote: true do |f| %>
 
-        <%= f.collection_select(:dish_id, Dish.all, :id, :name) %>
+          <%= f.collection_select(:dish_id, Dish.all, :id, :name) %>
 
-        <%= f.label :serving %>
-        <%= f.number_field :serving %>
+          <%= f.label :serving %>
+          <%= f.number_field :serving %>
 
-        <% f.label :date %>
-        <%= f.date_select :date %>
+          <% f.label :date %>
+          <%= f.date_select :date %>
 
-        <%= f.submit value: "Confirm", id: "intake-submit" %>
-      <% end %>
+          <%= f.submit value: "Confirm", id: "intake-submit" %>
+        <% end %>
+      </div>
     </div>
   </div>
 
-  <div class="nutrient-intakes">
-    <h2>Nutrient intakes: </h2>
-    <ul>
-      <% @nutrient_intakes.each do |nutrient, intake| %>
-      <li><%= "#{nutrient}: #{intake.round(2)}%" %></li>
-      <% end %>
-    </ul>
+</div>
+
+  <div class="row">
+    <div class="nutrient-intakes">
+      <h2>Nutrient intakes: </h2>
+      <ul>
+        <% @nutrient_intakes.each do |nutrient, intake| %>
+        <li><%= "#{nutrient}: #{intake.round(2)}%" %></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 
