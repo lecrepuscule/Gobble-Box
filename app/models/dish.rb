@@ -5,6 +5,10 @@ class Dish < ActiveRecord::Base
   has_many :dish_nutrients
   has_many :nutrients, through: :dish_nutrients
 
+  def total_serving
+    intakes.inject(0) {|sum, intake| sum += intake.serving}
+  end
+
 
   def record dish_data
     unless Dish.exists?(name: dish_data["recipe"]["label"])

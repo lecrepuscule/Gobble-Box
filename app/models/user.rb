@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
     nutrient_intakes = Hash.new(0)
     dishes.each do |dish|
       nutrient_intakes = dish.dish_nutrients.inject(nutrient_intakes) do |intakes, nutrient|
-        intakes[nutrient.nutrient.name] += nutrient.daily_percentage
+        intakes[nutrient.nutrient.name] += (nutrient.daily_percentage * dish.total_serving / nutrient.per_measure)
         intakes
       end
     end
