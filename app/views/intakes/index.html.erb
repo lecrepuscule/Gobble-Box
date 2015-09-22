@@ -8,13 +8,17 @@
     <% end %>
   </ul>
 
-<h2>Nutrients intake: </h2>
+  <%= form_tag do %>
+    <%= label_tag(:q, "I have also had:") %>
+    <%= text_field_tag(:q) %>
+    <%= submit_tag("Search", class: "search-dish") %>
+  <% end %>
 
+  <div class="results"></div>
 
-<%= form_tag do %>
-  <%= label_tag(:q, "I have also had:") %>
-  <%= text_field_tag(:q) %>
-  <%= submit_tag("Search", class: "search-dish") %>
-<% end %>
-
-<div class="results"></div>
+<h2>Nutrient intakes: </h2>
+  <ul>
+    <% @nutrient_intakes.each do |nutrient, intake| %>
+    <li><%= "#{nutrient}: #{intake}" %></li>
+    <% end %>
+  </ul>

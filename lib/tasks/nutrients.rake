@@ -13,7 +13,10 @@ namespace :nutrients do
       total = data["list"]["total"]
 
       data["list"]["item"].each do |nutrient|
-        Nutrient.create(name: nutrient["name"], ndb_nutrient_id: nutrient["id"]) unless Nutrient.find_by(ndb_nutrient_id: nutrient["id"])      
+        ndb = Nutrient.find_by(name: nutrient["name"])
+        unless ndb == nil
+          ndb.update_attributes(ndb_nutrient_id: nutrient["id"]) unless Nutrient.find_by(ndb_nutrient_id: nutrient["id"])  
+        end    
       end
       puts "#{data["list"]["end"] - data["list"]["start"]} has been inserted into db"
 
