@@ -1,22 +1,30 @@
-<h1>User Sign Up</h1>
+<div class="row">
+  <div class="small-3 large-5 large-centered columns">
+    <h1>User Sign Up</h1>
+  </div>
+</div>
 
-<%= form_for @user do |f| %>
+<div class="row">
+  <div class="small-3 large-5 large-centered columns">
+    <%= form_for @user do |f| %>
 
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
 
-  <%= f.label :age %>
-  <%= f.number_field :age %>
+      <%= f.label :age %>
+      <%= f.number_field :age %>
 
-  <%= f.label :gender %>
-  <%= f.text_field :gender %>
+      <%= f.label :gender %>
+      <%= f.text_field :gender %>
 
-  <%= f.label :weight %>
-  <%= f.number_field :weight %>
+      <%= f.label :weight %>
+      <%= f.number_field :weight %>
 
-  <%= f.label :height %>
-  <%= f.number_field :height %>
+      <%= f.label :height %>
+      <%= f.number_field :height %>
 
-  <%= f.submit value: "Sign Up" %>
+      <%= f.submit value: "Sign Up", class: "button round" %>
 
-<% end %>
+    <% end %>
+  </div>
+</div>

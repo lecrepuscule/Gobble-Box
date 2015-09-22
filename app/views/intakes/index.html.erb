@@ -3,7 +3,7 @@
     <h1>Welcome, <%= @user.name %>!</h1>
   </div>
   <div class="small-3 large-6 columns">
-    <h1><%= link_to "Balance your diet", dishes_path, id: "find-inspiration" %></h1>
+    <h1><%= link_to "Balance your diet", dishes_path, id: "find-inspiration", class: "button round" %></h1>
   </div>
 </div>
 
@@ -30,7 +30,7 @@
       <div class="intake-ops">
         <div id="intake-primary" class="show">
           <%= form_tag("/dishes", method: "post", remote: true, id: "search-form") do %>
-            <%= label_tag(:q, "I have also had:", class: "label round") %>
+            <%= label_tag(:q, "I have also had:") %>
             <%= text_field_tag(:q) %>
             <%= submit_tag("Search", id: "search-dish", class: "button round small") %>
           <% end %>
