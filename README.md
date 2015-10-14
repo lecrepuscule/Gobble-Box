@@ -1,4 +1,4 @@
-== README
+Gobble-Box
 
 The app searches dishes that contribute towards your nutrient daily recommended values based on what have been eaten during a period.
 
