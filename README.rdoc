@@ -10,8 +10,7 @@ How it works:
 2. when a user searches a dish, the relevant data of the results returned for the first time will be recorded in the app's db
 
 3. there are 5 tables in the db
-
-<img width="620" alt="screen shot 2015-09-23 at 09 43 38" src="https://cloud.githubusercontent.com/assets/13487694/10041170/207719a4-61da-11e5-8799-afeed9804527.png">
+![](cloud.githubusercontent.com/assets/13487694/10041170/207719a4-61da-11e5-8799-afeed9804527.png)
 
 4. the app aggregates the nutrient values for each dish eaten by a user and show off the current intake status
 
